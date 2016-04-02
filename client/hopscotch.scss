@@ -119,7 +119,10 @@ body {
 
     th.city-plaza-cell {
         font-size: 32px;
-        transform: scaleY(.95);
+        text-align: right;
+        vertical-align: top;
+        padding-top: 15px;
+        transform: scaleY(.9);
         color: #000;
         letter-spacing: -1px;
     }
@@ -140,7 +143,7 @@ body {
         }
 
         .events {
-            padding: 8px 4px 0;
+            padding: 8px 6px 0;
 
             .event {
                 padding-top: 2px;
