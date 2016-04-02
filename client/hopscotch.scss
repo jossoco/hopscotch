@@ -1,0 +1,213 @@
+$genres: (electronic, experimental, folk-country, hip-hop, metal, punk-garage, rock-pop);
+$genre-colors: (#f26322, #0086b9, #087039, #c8509d, #563983, #f7ec0f, #b31f30);
+
+#hopscotch-table {
+    width: 100%;
+    table-layout: fixed;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    text-transform: uppercase;
+    font-family: 'Hind', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    color: #000;
+
+    th, td {
+        width: 70px;
+        min-width: 70px;
+        height: 28px;
+        max-height: 28px;
+        text-align: center;
+        padding: 0;
+    }
+    
+    th {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 12px;
+        padding: 2px 2px 8px 2px;
+        color: #111;
+    }
+
+    td {
+        border-right: 2px solid #000;
+
+        @for $i from 1 through length($genres) {
+            .#{nth($genres, $i)} {
+                box-shadow: inset 6px 0 0 0 nth($genre-colors, $i);
+            }
+        }
+
+        .act {
+            width: 68px;
+            height: 28px;
+            max-height: 28px;
+            overflow: hidden;
+
+            padding-left: 7px;
+            line-height: 14px;
+            padding-top: 2px;
+
+            .subheader {
+                font-size: 8px;
+                line-height: 8px;
+                margin-top: -2px;
+            }
+        }
+    }
+
+    tr:nth-child(even) {
+        background-color: #dedede;
+    }
+
+    tr.day {
+        td:not(.day-cell) {
+            border-top: 4px solid #000;
+        }
+    }
+
+    .time-cell {
+        width: 40px;
+        min-width: 40px;
+        font-size: 12px;
+        letter-spacing: 0.8px;
+    }
+
+    td.time-cell {
+        background-color: #000;
+        color: #f0f0f0;
+    }
+
+    .city-plaza-cell {
+        width: 160px;
+        min-width: 160px;
+        background-color: #fff;
+        padding-bottom: 0;
+    }
+
+    th.city-plaza-cell {
+        font-size: 32px;
+        transform: scaleY(.95);
+        color: #000;
+        letter-spacing: -1px;
+    }
+
+    td.city-plaza-cell {
+        vertical-align: top;
+        text-align: right;
+
+        .doors {
+            width: 100%;
+            text-align: left;
+            background-color: #000;
+            color: #f0f0f0;
+            padding: 2px;
+            font-size: 12px;
+            line-height: 12px;
+            margin-top: -1px;
+        }
+
+        .events {
+            padding: 8px 4px 0;
+
+            .event {
+                padding-top: 2px;
+            }
+
+            .primary {
+                font-size: 26px;
+                line-height: 26px;
+            }
+
+            .primary-2 {
+                font-size: 23px;
+                line-heigth: 23px;
+            }
+
+            .secondary {
+                font-size: 19px;
+                line-height: 19px;
+            }
+
+            .tertiary {
+                display: inline-block;
+                font-size: 16px;
+                line-height: 16px;
+                max-width: 130px;
+            }
+        }
+    }
+
+    .day-cell {
+        width: 100px;
+        background-color: #fff;
+        border: 0;
+        
+        div {
+            transform: rotate(90deg);
+            margin-left: -55px;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: normal;
+        }
+    }
+
+    .legend td:not(.city-plaza-cell) {
+        background-color: #fff;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #000;
+
+        font-size: 16px;
+        line-height: 16px;
+        padding: 3px 8px;
+
+        .genre {
+            display: table-cell;
+            padding: 0 15px 0 12px;
+            @for $i from 1 through length($genres) {
+                &.#{nth($genres, $i)} {
+                    box-shadow: inset 9px 0 0 0 nth($genre-colors, $i);
+                }
+            }
+
+            .name {
+                position: relative;
+                top: 1px;
+                transform: scaleY(0.9);
+            }
+        }
+    }
+
+    .overflow {
+        width: auto;
+        max-width: none;
+        min-width: auto;
+        background-color: #fff;
+    }
+
+
+    // Special styling for individual acts.
+    .act.italic-subheader {
+        .subheader {
+            font-size: 6px;
+            font-style: italic;
+            margin-top:0;
+        }
+    }
+
+    .act.static-font-size {
+        font-size: 9px;
+        margin-top: 0;
+
+        .subheader {
+            font-size: 7px;
+        }
+    }
+
+    .act.no-text-transform {
+        text-transform: none;
+    }
+}

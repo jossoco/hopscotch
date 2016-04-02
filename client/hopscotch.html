@@ -1,0 +1,86 @@
+<head>
+    <title>Hopscotch 2015</title>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    {{> hopscotchSchedule}}
+</body>
+
+<template name="hopscotchSchedule">
+    <table id="hopscotch-table">
+        <thead>
+            <tr>
+                <th class="city-plaza-cell">
+                    City Plaza
+                </th>
+                <th class="time-cell"></th>
+                {{#each getVenues}}
+                    <th>{{name}}</th>
+                {{/each}}
+
+                <th class="day-cell"></th>
+                <th class="overflow"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#with getEventData}}
+                {{#each dates}} 
+                    <tr class="{{getRowClass}}">
+                        {{#if first}}
+                            <td rowspan="{{getDayRowSpan ..}}" class="city-plaza-cell">
+                                {{#with getCityPlazaEvents ..}}
+                                    <div class="doors">Doors: {{formatTime doors}}</div>
+                                    <div class="events">
+                                        {{#each this.events}}
+                                            <div class="event {{class}}">
+                                                {{act}}
+                                            </div>
+                                            <div class="time">{{formatTime}}</div>
+                                        {{/each}}
+                                    </div>
+                                {{/with}}
+                            </td>
+                        {{/if}}
+
+                        <td class="time-cell">{{formatTime}}</td>
+
+                        {{#with getEventsForDate ..}}
+                            {{#each venue in getVenues}}
+                                <td>
+                                    {{#with getVenueEvent venue}}
+                                        <div class="act {{getActClass}} {{genre.class}}">
+                                            {{act}}
+
+                                            {{#if subheader}}
+                                                <div class="subheader">{{subheader}}</div>
+                                            {{/if}}
+                                        </div>
+                                    {{/with}}
+                                </td>
+                            {{/each}}
+                        {{/with}}
+
+                        {{#if first}}
+                            <td rowspan="{{getDayRowSpan ..}}" class="day-cell">
+                                <div>{{getDay}}</div>
+                            </td>
+                        {{/if}}
+                        <th class="overflow"></th>
+                    </tr>
+                {{/each}}
+            {{/with}}
+
+            <tr class="legend">
+                <td class="city-plaza-cell"></td>
+                <td colspan="{{getLegendColSpan}}">
+                    {{#each getGenres}}
+                        <div class="genre {{class}}">
+                            <div class="name">{{name}}</div>
+                        </div>
+                    {{/each}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>
